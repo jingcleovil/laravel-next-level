@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Events\UserHasRegistered;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -29,6 +30,8 @@ class RegisterController extends Controller {
      */
     public function store(Request $request)
 	{
-        return $this->dispatchFrom('App\Commands\RegisterCommand', $request);
+        $user = $this->dispatchFrom('App\Commands\RegisterCommand', $request);
+
+        event(new UserHasRegistered($user));
 	}
 }
