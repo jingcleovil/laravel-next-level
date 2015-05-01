@@ -23,5 +23,6 @@ class RegisterCommandHandler {
 	public function handle(RegisterCommand $command)
 	{
 
+        dd($command);
 	}
 }

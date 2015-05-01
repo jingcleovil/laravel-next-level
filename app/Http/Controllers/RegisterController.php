@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Http\Request;
 
 /**
@@ -27,8 +28,12 @@ class RegisterController extends Controller {
      *
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(Request $request, Dispatcher $dispatcher)
 	{
+        $dispatcher->pipeThrough([
+            'App\Sanitizer'
+        ]);
+
         return $this->dispatchFrom('App\Commands\RegisterCommand', $request);
 	}
 }
