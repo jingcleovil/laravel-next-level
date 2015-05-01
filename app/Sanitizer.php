@@ -12,7 +12,7 @@ class Sanitizer {
      */
     public function handle(RegisterCommand $command, $next)
     {
-        $command->name = 'xx';
+        $command->name = trim(preg_replace('/[^\w\- ]/', '', $command->name));
         return $next($command);
     }
 }
