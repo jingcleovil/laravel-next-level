@@ -3,11 +3,14 @@
 $router->get('/', 'WelcomeController@index');
 
 $router->resource(
-    'register',
-    'RegisterController',
-    [
-        'only' => [
-            'index', 'store'
-        ]
-    ]
+    'login',
+    'AuthController@index'
 );
+
+$router->group(['middleware' => ['auth']], function () use ($router) {
+
+    $router->resource(
+        'profile',
+        'ProfileController'
+    );
+});
