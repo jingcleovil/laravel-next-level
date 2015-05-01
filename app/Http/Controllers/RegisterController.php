@@ -24,12 +24,14 @@ class RegisterController extends Controller {
 	}
 
     /**
-     * @param Request $request
+     * @param Request    $request
+     * @param Dispatcher $dispatcher
      *
      * @return mixed
      */
     public function store(Request $request, Dispatcher $dispatcher)
 	{
+        // Decorator Pattern
         $dispatcher->pipeThrough([
             'App\Sanitizer'
         ]);
