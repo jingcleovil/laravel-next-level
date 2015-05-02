@@ -13,6 +13,11 @@ class BusServiceProvider extends ServiceProvider {
 	 */
 	public function boot(Dispatcher $dispatcher)
 	{
+        // Decorator Pattern
+//        $dispatcher->pipeThrough([
+//            'App\Sanitizer'
+//        ]);
+
 		$dispatcher->mapUsing(function($command)
 		{
 			return Dispatcher::simpleMapping(

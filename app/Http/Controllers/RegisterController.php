@@ -31,11 +31,6 @@ class RegisterController extends Controller {
      */
     public function store(Request $request, Dispatcher $dispatcher)
 	{
-        // Decorator Pattern
-        $dispatcher->pipeThrough([
-            'App\Sanitizer'
-        ]);
-
         return $this->dispatchFrom('App\Commands\RegisterCommand', $request);
 	}
 }
